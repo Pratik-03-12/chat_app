@@ -22,11 +22,11 @@ class ChatBubble extends StatelessWidget {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text('$message',style: TextStyle(fontSize: 20,color: Colors.white),),
+            Text(message,style: const TextStyle(fontSize: 20,color: Colors.white),),
             Image.network('https://w7.pngwing.com/pngs/124/394/png-transparent-of-smartphone-and-app-icons-mobile-app-development-application-software-installation-app-store-optimization-mobile-application-electronics-gadget-web-design-thumbnail.png'),
           ],
         ),
       ),
-    );;
+    );
   }
 }
