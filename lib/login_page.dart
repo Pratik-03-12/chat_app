@@ -2,11 +2,21 @@
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
-  const LoginPage({super.key});
+  LoginPage({super.key});
 
+  final _formkey = GlobalKey<FormState>();
   void loginUser(){
-    print('Login Successful');
+
+    if(_formkey.currentState!=Null && _formkey.currentState!.validate()){
+      print(userNameController.text);
+      print(passWordController.text);
+      print('Login Successful');
+    }
   }
+
+  final userNameController=TextEditingController();
+  final passWordController=TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -41,35 +51,52 @@ class LoginPage extends StatelessWidget {
                   height: 300,
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.all(15.0),
-                child: TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Add your username',
-                    hintStyle: TextStyle(color: Colors.blueGrey),
-                    border: OutlineInputBorder()
-                  ),
+              Form(
+                key: _formkey,
+                child: Column(
+                  children: [
+                    TextFormField(
+                      validator: (value){
+                        if(value!=null && value.isNotEmpty && value.length<5) {
+                          return "Your username should be more than 5 characters";
+                        }else if(value!=null && value.isEmpty){
+                          return "Please type your username";
+                        }
+                        return null;
+                      },
+                      controller: userNameController,
+                      decoration: const InputDecoration(
+                        hintText: 'Add your username',
+                        hintStyle: TextStyle(color: Colors.blueGrey),
+                        border: OutlineInputBorder()
+                      ),
 
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    TextFormField(
+                      obscureText: true,
+                      controller: passWordController,
+                      decoration: const InputDecoration(
+                          hintText: 'Type your password',
+                          hintStyle: TextStyle(color: Colors.blueGrey),
+                          border: OutlineInputBorder()
+                      ),
+
+                    ),
+                    const SizedBox(
+                      height: 24,
+                    ),
+                    ElevatedButton(
+                        onPressed: loginUser,
+                        child: const Text(
+                          'Login',
+                          style: TextStyle(fontSize: 25, fontWeight: FontWeight.w300 ),
+                        )),
+                  ],
                 ),
               ),
-              const Padding(
-                padding: EdgeInsets.all(15.0),
-                child: TextField(
-                  obscureText: true,
-                  decoration: InputDecoration(
-                      hintText: 'Type your password',
-                      hintStyle: TextStyle(color: Colors.blueGrey),
-                      border: OutlineInputBorder()
-                  ),
-
-                ),
-              ),
-              ElevatedButton(
-                  onPressed: loginUser,
-                  child: const Text(
-                    'Click Me',
-                    style: TextStyle(fontSize: 30, fontWeight: FontWeight.w300 ),
-                  )),
               GestureDetector(
                 onTap: (){
                   //ToDo:Navigate to browser
