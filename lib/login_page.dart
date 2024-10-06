@@ -1,25 +1,29 @@
-
+import 'package:chat_app/chat_page.dart';
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatelessWidget {
   LoginPage({super.key});
 
   final _formkey = GlobalKey<FormState>();
-  void loginUser(){
-
-    if(_formkey.currentState!=Null && _formkey.currentState!.validate()){
+  void loginUser(context) {
+    if (_formkey.currentState != Null && _formkey.currentState!.validate()) {
       print(userNameController.text);
       print(passWordController.text);
+
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>ChatPage()));
       print('Login Successful');
+    }else{
+      print('Login Not successful');
     }
   }
 
-  final userNameController=TextEditingController();
-  final passWordController=TextEditingController();
+  final userNameController = TextEditingController();
+  final passWordController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       body: Center(
         child: Padding(
           padding: const EdgeInsets.all(24.0),
@@ -56,21 +60,21 @@ class LoginPage extends StatelessWidget {
                 child: Column(
                   children: [
                     TextFormField(
-                      validator: (value){
-                        if(value!=null && value.isNotEmpty && value.length<5) {
+                      validator: (value) {
+                        if (value != null &&
+                            value.isNotEmpty &&
+                            value.length < 5) {
                           return "Your username should be more than 5 characters";
-                        }else if(value!=null && value.isEmpty){
+                        } else if (value != null && value.isEmpty) {
                           return "Please type your username";
                         }
                         return null;
                       },
                       controller: userNameController,
                       decoration: const InputDecoration(
-                        hintText: 'Add your username',
-                        hintStyle: TextStyle(color: Colors.blueGrey),
-                        border: OutlineInputBorder()
-                      ),
-
+                          hintText: 'Add your username',
+                          hintStyle: TextStyle(color: Colors.blueGrey),
+                          border: OutlineInputBorder()),
                     ),
                     const SizedBox(
                       height: 24,
@@ -81,24 +85,25 @@ class LoginPage extends StatelessWidget {
                       decoration: const InputDecoration(
                           hintText: 'Type your password',
                           hintStyle: TextStyle(color: Colors.blueGrey),
-                          border: OutlineInputBorder()
-                      ),
-
+                          border: OutlineInputBorder()),
                     ),
                     const SizedBox(
                       height: 24,
                     ),
                     ElevatedButton(
-                        onPressed: loginUser,
+                        onPressed: (){
+                          loginUser(context);
+                        },
                         child: const Text(
                           'Login',
-                          style: TextStyle(fontSize: 25, fontWeight: FontWeight.w300 ),
+                          style: TextStyle(
+                              fontSize: 25, fontWeight: FontWeight.w300),
                         )),
                   ],
                 ),
               ),
               GestureDetector(
-                onTap: (){
+                onTap: () {
                   //ToDo:Navigate to browser
                   print('Clicked');
                 },

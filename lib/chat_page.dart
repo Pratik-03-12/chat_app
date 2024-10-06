@@ -9,12 +9,15 @@ class ChatPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: const Text(
           "Hi Pratik",
         ),
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.logout))],
+        actions: [IconButton(onPressed: () {
+          Navigator.pop(context);
+        }, icon: const Icon(Icons.logout))],
       ),
       body: Column(
         children: [
@@ -24,7 +27,7 @@ class ChatPage extends StatelessWidget {
                 itemBuilder: (context, index) {
                   return ChatBubble(
                       message: "Hi!This is Pratik",
-                      alignment: index %2 ==0?Alignment.centerLeft:Alignment.centerRight);
+                      alignment: index %2 == 0?Alignment.centerLeft:Alignment.centerRight);
                 }),
           ),
           ChatInput(),
