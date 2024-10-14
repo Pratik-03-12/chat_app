@@ -1,4 +1,4 @@
-import 'package:chat_app/utils/textfield_styles.dart';
+import 'package:chat_app/utils/spaces.dart';
 import 'package:chat_app/widgets/login_password_field.dart';
 import 'package:chat_app/widgets/login_text_field.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +12,7 @@ class LoginPage extends StatelessWidget {
       print(userNameController.text);
       print(passWordController.text);
 
-      Navigator.pushReplacementNamed(context, '/chat',arguments: '${userNameController.text}');
+      Navigator.pushReplacementNamed(context, '/chat',arguments: userNameController.text);
       print('Login Successful');
     }else{
       print('Login Not successful');
@@ -76,16 +76,12 @@ class LoginPage extends StatelessWidget {
                       },
                       controller: userNameController,
                     ),
-                    const SizedBox(
-                      height: 24,
-                    ),
+                   verticalSpacing(24),
                     LoginPasswordField(
                       controller: passWordController,
                       hintText: "Enter your password",
                     ),
-                    const SizedBox(
-                      height: 24,
-                    ),
+                   verticalSpacing(24),
                     ElevatedButton(
                         onPressed: (){
                           loginUser(context);
