@@ -21,7 +21,8 @@
     },
     "createdAt" : 1324354673,
     "id" : "152",
-    "text" : "Heyy Good Morning to you ! It has been very beautiful to meet you"
+    "text" : "Heyy Good Morning to you ! It has been very beautiful to meet you",
+    "image" : "https://letsenhance.io/static/8f5e523ee6b2479e26ecc91b9c25261e/1015f/MainAfter.jpg"
   },
   {
     "author" : {
@@ -37,6 +38,7 @@
     },
     "createdAt" : 13243554635,
     "id" : "1625",
-    "text" : "Spent very nice time with you for the last few days."
+    "text" : "Spent very nice time with you for the last few days.",
+    "image" : "https://media.istockphoto.com/id/1403500817/photo/the-craggies-in-the-blue-ridge-mountains.jpg?s=612x612&w=0&k=20&c=N-pGA8OClRVDzRfj_9AqANnOaDS3devZWwrQNwZuDSk="
   }
 ]
